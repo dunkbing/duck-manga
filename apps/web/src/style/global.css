@@ -1,0 +1,27 @@
+/* Remove scrollbar */
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+    display: 'none';
+}
+
+/* Use Montserrat for headers if possible */
+/* h1, h2, h3, h4, h5, h6 { */
+/* font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Roboto', 'Helvetica Neue', sans-serif !important */
+/* } */
+
+/*  */
+
+body {
+    min-height: calc(100vh + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px) env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+
+    /* min-height: 100vh; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
