@@ -28,3 +28,7 @@ export interface MangaSearchResult {
   previous?: string;
   results: MangaList;
 }
+
+export interface MangaRequestParams {
+  id?: number;
+}
