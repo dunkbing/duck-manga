@@ -16,8 +16,10 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^1.1.6",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-fastify": "^8.2.4",
+    "@nestjs/typeorm": "^8.0.2",
     "@nrwl/next": "^13.4.3",
     "@reduxjs/toolkit": "^1.7.1",
     "@sentry/nextjs": "^6.16.1",
@@ -26,6 +28,7 @@
     "core-js": "^3.6.5",
     "dotenv": "^10.0.0",
     "material-ui-color": "^1.2.0",
+    "mysql2": "^2.3.3",
     "next": "12.0.7",
     "next-redux-wrapper": "^7.0.5",
     "react": "17.0.2",
@@ -39,7 +42,8 @@
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
     "styled-components": "^5.3.3",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "typeorm": "^0.2.41"
   },
   "devDependencies": {
     "@nestjs/schematics": "^8.0.0",
