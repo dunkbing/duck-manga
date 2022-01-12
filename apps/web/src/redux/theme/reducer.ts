@@ -1,5 +1,4 @@
-import { PaletteMode } from '@mui/material';
-import { PaletteOptions } from '@mui/material/styles/createPalette';
+import { PaletteMode, PaletteOptions } from '@mui/material';
 import { defaultDark, defaultLight } from './defaults';
 import { createReducer } from '@reduxjs/toolkit';
 import { setPalette, setThemeMode as setThemeMode } from './actions';

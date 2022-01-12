@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { PaletteMode, Theme } from '@mui/material';
-import { PaletteOptions } from '@mui/material/styles/createPalette';
+import { PaletteMode, PaletteOptions, Theme } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { setPalette, setThemeMode } from '../../../redux/theme/actions';
 import { RootState } from '../../../redux/store';
@@ -47,7 +46,7 @@ export function ThemePage() {
         <ChangeThemeRadio callback={(mode: PaletteMode) => dispatch(setThemeMode(mode))} />
       </SettingPart>
 
-      <SettingPart title='Dark theme palette'>
+      {/* <SettingPart title='Dark theme palette'>
         <PaletteChanger
           currentPalette={statePalettes.dark}
           resetPalette={useCallback(() => dispatch(setPalette('dark', defaultDark)), [dispatch])}
@@ -55,13 +54,13 @@ export function ThemePage() {
         />
       </SettingPart>
 
-      <SettingPart title='Light theme palette' noDivier>
+      <SettingPart title='Light theme palette' noDivider>
         <PaletteChanger
           currentPalette={statePalettes.light}
           resetPalette={useCallback(() => dispatch(setPalette('light', defaultLight)), [dispatch])}
           submitPalette={useCallback((options: PaletteOptions) => dispatch(setPalette('light', options)), [dispatch])}
         />
-      </SettingPart>
+      </SettingPart> */}
     </div>
   );
 }
