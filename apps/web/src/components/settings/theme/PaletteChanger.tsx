@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Color, ColorPicker } from 'material-ui-color';
-import { Button, createStyles, makeStyles, Theme } from '@material-ui/core';
-import createPalette, { PaletteOptions, SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette';
+import { Color, ColorPicker } from 'mui-color';
+import { Button, Theme, NoSsr } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+import createPalette, { PaletteOptions, SimplePaletteColorOptions } from '@mui/material/styles/createPalette';
 import { DuckChip } from '../../DuckChip';
-import { NoSsr } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
         marginRight: theme.spacing(1),
       },
     },
-  })
+  }),
 );
 
 type ToneType = keyof SimplePaletteColorOptions;
@@ -66,7 +66,7 @@ export function PaletteChanger({ currentPalette, resetPalette, submitPalette }: 
             backgroundColor: paletteDraft.primary.main,
             color: paletteDraft.text.primary,
           }}
-          label="main"
+          label='main'
         />
         <DuckChip
           onClick={() => setActiveColor('light')}
@@ -74,7 +74,7 @@ export function PaletteChanger({ currentPalette, resetPalette, submitPalette }: 
             backgroundColor: paletteDraft.primary.light,
             color: paletteDraft.text.primary,
           }}
-          label="light"
+          label='light'
         />
         <DuckChip
           onClick={() => setActiveColor('dark')}
@@ -82,7 +82,7 @@ export function PaletteChanger({ currentPalette, resetPalette, submitPalette }: 
             backgroundColor: paletteDraft.primary.dark,
             color: paletteDraft.text.primary,
           }}
-          label="dark"
+          label='dark'
         />
       </div>
       <NoSsr>

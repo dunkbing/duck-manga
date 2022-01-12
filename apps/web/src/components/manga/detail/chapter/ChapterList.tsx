@@ -1,6 +1,6 @@
-import { List, Typography } from '@material-ui/core';
+import { List, Typography } from '@mui/material';
 import { ChapterItem } from './ChapterItem';
-import { Divider } from '@material-ui/core';
+import { Divider } from '@mui/material';
 import { memo } from 'react';
 import { useMemo } from 'react';
 import { RootState } from '../../../../redux/store';
@@ -53,13 +53,7 @@ export const ChapterList = memo(({ mangaId, chapters }: Props) => {
         />
       ));
       const unread = unreadChapters?.map((chapter, index) => (
-        <ChapterItem
-          key={chapter.link}
-          mangaId={mangaId}
-          chapter={chapter}
-          index={chapters?.length - index}
-          chipWidth={chipWidth}
-        />
+        <ChapterItem key={chapter.link} mangaId={mangaId} chapter={chapter} index={chapters?.length - index} chipWidth={chipWidth} />
       ));
       return unread.concat(read);
     }
@@ -78,7 +72,7 @@ export const ChapterList = memo(({ mangaId, chapters }: Props) => {
           </>
         ))
       ) : (
-        <Typography variant="h5" align="center">
+        <Typography variant='h5' align='center'>
           Chapters not found
         </Typography>
       )}

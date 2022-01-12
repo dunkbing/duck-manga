@@ -1,6 +1,7 @@
-import { createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Theme, Typography } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+import { Skeleton } from '@mui/lab';
 import { MangaImage } from '../MangaImage';
-import { Skeleton } from '@material-ui/lab';
 import { useImageLoaded } from '../../../common/hooks';
 import { memo } from 'react';
 
@@ -65,7 +66,7 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
       backgroundImage: ({ image }) => `url("${image}")`,
       backgroundOrigin: 'content-box',
     },
-  })
+  }),
 );
 
 type Props = {
@@ -83,19 +84,14 @@ export const DetailHeader = memo((props: Props) => {
       <div className={classes.root}>
         <div className={classes.avatarBg}></div>
         {avatarLoaded ? (
-          <MangaImage
-            src={props.image}
-            variant="rounded"
-            className={classes.avatar}
-            classes={{ img: classes.avatarImg }}
-          />
+          <MangaImage src={props.image} variant='rounded' className={classes.avatar} classes={{ img: classes.avatarImg }} />
         ) : (
-          <Skeleton width="185px" variant="rect" className={classes.avatar} style={{ borderRadius: '0.5rem' }} />
+          <Skeleton width='185px' variant='rectangular' className={classes.avatar} style={{ borderRadius: '0.5rem' }} />
         )}
       </div>
       <div className={classes.titleContainer}>
-        <Typography variant="h4" className={classes.title}>
-          {props.title ? props.title : <Skeleton animation="wave" />}
+        <Typography variant='h4' className={classes.title}>
+          {props.title ? props.title : <Skeleton animation='wave' />}
         </Typography>
         {props.altTitle ? <h3 className={classes.altTitle}>{props.altTitle}</h3> : ''}
       </div>

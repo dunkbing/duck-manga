@@ -1,5 +1,5 @@
-import { ListItem } from '@material-ui/core';
-import { ListItemText } from '@material-ui/core';
+import { ListItem } from '@mui/material';
+import { ListItemText } from '@mui/material';
 import { setCurrentChapter } from '../../../../redux/manga/actions';
 import { useRouter } from 'next/router';
 import { memo } from 'react';
@@ -26,7 +26,7 @@ export const ChapterItem = memo(({ mangaId, chapter, index, chipWidth, read }: P
   };
 
   return (
-    <ListItem button onClick={passChapterCallback} alignItems="flex-start">
+    <ListItem button onClick={passChapterCallback} alignItems='flex-start'>
       <ListItemText>
         <ChapterChip chipWidth={chipWidth} value={index} variant={(read && 'outlined') || 'default'} />
         <span>{chapter.title || ''}</span>

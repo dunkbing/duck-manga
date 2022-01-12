@@ -1,29 +1,29 @@
-import { GetServerSideProps } from 'next';
-import { Reader } from '../../../../components/reader/Reader';
 import { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import * as Sentry from '@sentry/nextjs';
+import { useSelector } from 'react-redux';
+import { AxiosError } from 'axios';
+import { Typography, Slide } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+import { Reader } from '../../../../components/reader/Reader';
 import { RootState, useAppDispatch, wrapper } from '../../../../redux/store';
 import { fetchAll, fetchChapterImages, setCurrentChapter, setCurrentManga } from '../../../../redux/manga/actions';
 import { CenteredProgress } from '../../../../components/CenteredProgress';
 import { ReaderMode } from '../../../../components/reader/types';
 import { CurrentChapter, CurrentChapterImages } from '../../../../redux/manga/reducer';
-import Slide from '@material-ui/core/Slide';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import * as Sentry from '@sentry/nextjs';
-import { createStyles, makeStyles, Typography } from '@material-ui/core';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useInitialEffect } from '../../../../common/hooks';
 import { Header } from '../../../../components/header/Header';
 import { isClientSideNavigation, navigateToDetail } from '../../../../common/router';
 import { requestAllMangaData } from '../../../../redux/manga/utils';
-import { AxiosError } from 'axios';
 import { captureAxiosToError } from '../../../../common/utils';
 
 const useStyles = makeStyles(() =>
   createStyles({
     headerInner: {},
     header: { opacity: 0.7 },
-  })
+  }),
 );
 
 type Props = {
@@ -70,24 +70,20 @@ export default function Read({ mangaId, volumeNumber, chapterNumber }: Props) {
 
   const chapterReady = useMemo(
     () => Boolean(chapter && chapter.number === chapterNumber && chapter.images !== undefined),
-    [chapter, chapterNumber]
+    [chapter, chapterNumber],
   );
 
   // Current chapter.number may differ from chapterNumber in case of replacing route
   return chapterReady && manga ? (
     <>
-      <Slide appear={false} direction="down" in={!showHeader}>
-        <Header
-          className={classes.header}
-          icon={<ArrowBackIcon />}
-          onIconClick={() => navigateToDetail(router, manga.id, 1)}
-        >
+      <Slide appear={false} direction='down' in={!showHeader}>
+        <Header className={classes.header} icon={<ArrowBackIcon />} onIconClick={() => navigateToDetail(router, manga.id, 1)}>
           <div className={classes.headerInner}>
-            <Typography color="textPrimary" variant="h6">
+            <Typography color='textPrimary' variant='h6'>
               {chapter?.title}
             </Typography>
             {chapter?.images ? (
-              <Typography color="textPrimary" variant="subtitle1">
+              <Typography color='textPrimary' variant='subtitle1'>
                 {headerImageNumber} / {chapter.images.length}
               </Typography>
             ) : null}

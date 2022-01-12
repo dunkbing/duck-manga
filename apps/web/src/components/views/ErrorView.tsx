@@ -1,6 +1,7 @@
-import { createStyles, makeStyles } from '@material-ui/core';
+import { Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -10,7 +11,7 @@ const useStyles = makeStyles((theme) =>
     message: {
       display: 'inline-block',
     },
-  })
+  }),
 );
 
 type Props = {

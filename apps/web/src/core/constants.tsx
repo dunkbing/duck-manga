@@ -1,6 +1,6 @@
 import { ListType } from '../redux/saveLists/types';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ListIcon from '@material-ui/icons/List';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ListIcon from '@mui/icons-material/List';
 
 export type SaveListMap = { icon: JSX.Element; alt: string };
 

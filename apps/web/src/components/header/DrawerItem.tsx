@@ -1,5 +1,5 @@
 import { forwardRef, ReactEventHandler, Ref } from 'react';
-import { ListItem, ListItemIcon, ListItemProps, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemProps, ListItemText } from '@mui/material';
 import { NextLink } from '../NextLink';
 
 type DrawerItemProps = Omit<
@@ -13,18 +13,9 @@ type DrawerItemProps = Omit<
 
 export const DrawerItem = forwardRef<any, DrawerItemProps>(
   ({ href, toggleDrawer, text, icon, ...props }: DrawerItemProps, ref: Ref<any>) => (
-    <ListItem
-      button
-      href={href}
-      component={NextLink}
-      color="inherit"
-      underline="none"
-      onClick={toggleDrawer(false)}
-      ref={ref}
-      {...props}
-    >
+    <ListItem button href={href} component={NextLink} color='inherit' underline='none' onClick={toggleDrawer(false)} ref={ref} {...props}>
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText>{text}</ListItemText>
     </ListItem>
-  )
+  ),
 );

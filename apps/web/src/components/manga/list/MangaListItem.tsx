@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { createStyles, ListItem, ListItemAvatar, makeStyles, Theme } from '@material-ui/core';
+import { ListItem, ListItemAvatar, Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { MangaListItemDesc } from './MangaListItemDesc';
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: mangaListImageSize.height,
       width: mangaListImageSize.width,
     },
-  })
+  }),
 );
 
 export const MangaListItem = memo((manga: Manga) => {
@@ -37,7 +38,7 @@ export const MangaListItem = memo((manga: Manga) => {
   }, [router, manga, dispatch]);
 
   return (
-    <ListItem button onClick={passManga} alignItems="flex-start" className={classes.root}>
+    <ListItem button onClick={passManga} alignItems='flex-start' className={classes.root}>
       <ListItemAvatar className={classes.avatarWrapper}>
         <MangaImage src={manga.thumbnail} className={classes.avatar} />
       </ListItemAvatar>

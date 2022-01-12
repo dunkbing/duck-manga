@@ -1,27 +1,21 @@
 import { ReactEventHandler, useCallback, useState } from 'react';
+import { Collapse, createStyles, List, ListItem, ListItemIcon, ListItemText, SwipeableDrawer, Theme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import {
-  Collapse,
-  createStyles,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
-  SwipeableDrawer,
-  Theme,
-} from '@material-ui/core';
-import SettingsIcon from '@material-ui/icons/Settings';
-import HomeIcon from '@material-ui/icons/Home';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+  ExpandLess,
+  ExpandMore,
+  List as ListIcon,
+  Settings as SettingsIcon,
+  Home as HomeIcon,
+  AccountBox as AccountBoxIcon,
+  ExitToApp as ExitToAppIcon,
+} from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { DrawerItem } from './DrawerItem';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
-import ListIcon from '@material-ui/icons/List';
 import { saveList } from '../../core/constants';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
     drawerWrapper: {
       height: '100vh',
@@ -36,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     nested: {
       paddingLeft: theme.spacing(4),
     },
-  })
+  }),
 );
 
 type Props = {
@@ -57,16 +51,16 @@ export const HeaderDrawer = ({ drawer, toggleDrawer }: Props) => {
     <SwipeableDrawer onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)} open={drawer}>
       <div className={classes.drawerWrapper}>
         <List className={classes.list}>
-          <DrawerItem href="/" text="Home" icon={<HomeIcon />} toggleDrawer={toggleDrawer} />
+          <DrawerItem href='/' text='Home' icon={<HomeIcon />} toggleDrawer={toggleDrawer} />
           <ListItem button onClick={openToggle}>
             <ListItemIcon>
               <ListIcon />
             </ListItemIcon>
-            <ListItemText primary="Lists" />
+            <ListItemText primary='Lists' />
             {listsOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={listsOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
+          <Collapse in={listsOpen} timeout='auto' unmountOnExit>
+            <List component='div' disablePadding>
               {Object.entries(saveList).map(([listName, map]) => (
                 <DrawerItem
                   key={listName}
@@ -79,17 +73,17 @@ export const HeaderDrawer = ({ drawer, toggleDrawer }: Props) => {
               ))}
             </List>
           </Collapse>
-          <DrawerItem href="/settings" text="Settings" icon={<SettingsIcon />} toggleDrawer={toggleDrawer} />
+          <DrawerItem href='/settings' text='Settings' icon={<SettingsIcon />} toggleDrawer={toggleDrawer} />
         </List>
         <List className={classes.list}>
           {user.access ? (
             <>
               {/* TODO: User profile */}
-              <DrawerItem href="/" text={user.username} icon={<AccountBoxIcon />} toggleDrawer={toggleDrawer} />
-              <DrawerItem href="/sign-out" text="Выйти" icon={<ExitToAppIcon />} toggleDrawer={toggleDrawer} />
+              <DrawerItem href='/' text={user.username} icon={<AccountBoxIcon />} toggleDrawer={toggleDrawer} />
+              <DrawerItem href='/sign-out' text='Выйти' icon={<ExitToAppIcon />} toggleDrawer={toggleDrawer} />
             </>
           ) : (
-            <DrawerItem href="/sign-in" text="Login" icon={<AccountBoxIcon />} toggleDrawer={toggleDrawer} />
+            <DrawerItem href='/sign-in' text='Login' icon={<AccountBoxIcon />} toggleDrawer={toggleDrawer} />
           )}
         </List>
       </div>

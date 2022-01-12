@@ -1,4 +1,6 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useState, useEffect } from 'react';
+import { createStyles, makeStyles } from '@mui/styles';
+import { useDispatch } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
 import { roundBinary, useLoadImages } from '../pager/utils';
@@ -6,9 +8,6 @@ import { useGetValidImageNumber } from '../pager/hooks';
 import { PagerImage, useSetReadOnCurrent } from './PagerImage';
 import { GoNextButton } from '../reader/GoNextButton';
 import { PagerProps } from '../reader/types';
-import { useEffect } from 'react';
-import { createStyles, makeStyles } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 
 const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
 
@@ -20,7 +19,7 @@ const useStyles = makeStyles(() =>
       flexDirection: 'column',
       justifyContent: 'center',
     },
-  })
+  }),
 );
 
 /**
@@ -50,7 +49,7 @@ export const DefaultPager = memo(({ mangaId, chapter, nextChapterLink, setHeader
         window.scroll({ top: 0 });
       }
     },
-    [validImageNumber, chapter.images, currentImage, setCurrentImage]
+    [validImageNumber, chapter.images, currentImage, setCurrentImage],
   );
 
   return (

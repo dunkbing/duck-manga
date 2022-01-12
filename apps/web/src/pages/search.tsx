@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Box, CircularProgress, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { Box, CircularProgress, Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../redux/store';
 import { paginateNext, startSearch } from '../redux/search/actions';
@@ -26,14 +27,14 @@ const useStyles = makeStyles((theme: Theme) =>
     list: {
       padding: theme.spacing(3, 1),
     },
-  })
+  }),
 );
 
 const parseSearchResults = (
   searchResults: MangaSearchResult,
   storedQuery: string,
   setMessage: Dispatch<any>,
-  setContent: Dispatch<any>
+  setContent: Dispatch<any>,
 ) => {
   if (!searchResults.results.length) {
     setMessage('No results found');
@@ -95,9 +96,9 @@ export default function Search() {
   return (
     <div className={classes.root}>
       <h1 className={classes.header}>{message}</h1>
-      {content && <MangaListView header="" mangaList={content} />}
+      {content && <MangaListView header='' mangaList={content} />}
       {paginating ? (
-        <Box display="flex" justifyContent="center" alignItems="center">
+        <Box display='flex' justifyContent='center' alignItems='center'>
           <CircularProgress disableShrink />
         </Box>
       ) : (

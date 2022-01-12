@@ -1,13 +1,14 @@
-import { createStyles, makeStyles, PaletteType, Theme } from '@material-ui/core';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPalette, setThemeType } from '../../../redux/theme/actions';
+import { PaletteMode, Theme } from '@mui/material';
+import { PaletteOptions } from '@mui/material/styles/createPalette';
+import { createStyles, makeStyles } from '@mui/styles';
+import { setPalette, setThemeMode } from '../../../redux/theme/actions';
 import { RootState } from '../../../redux/store';
 import { PaletteChanger } from './PaletteChanger';
 import { defaultDark, defaultLight } from '../../../redux/theme/defaults';
-import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 import { ChangeThemeRadio } from './ChangeThemeRadio';
 import { SettingPart } from '../SettingPart';
-import { useCallback } from 'react';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
         marginRight: theme.spacing(1),
       },
     },
-  })
+  }),
 );
 
 export function ThemePage() {
@@ -42,11 +43,11 @@ export function ThemePage() {
 
   return (
     <div className={classes.root}>
-      <SettingPart title="Theme">
-        <ChangeThemeRadio callback={(type: PaletteType) => dispatch(setThemeType(type))} />
+      <SettingPart title='Theme'>
+        <ChangeThemeRadio callback={(mode: PaletteMode) => dispatch(setThemeMode(mode))} />
       </SettingPart>
 
-      <SettingPart title="Dark theme palette">
+      <SettingPart title='Dark theme palette'>
         <PaletteChanger
           currentPalette={statePalettes.dark}
           resetPalette={useCallback(() => dispatch(setPalette('dark', defaultDark)), [dispatch])}
@@ -54,7 +55,7 @@ export function ThemePage() {
         />
       </SettingPart>
 
-      <SettingPart title="Light theme palette" noDivier>
+      <SettingPart title='Light theme palette' noDivier>
         <PaletteChanger
           currentPalette={statePalettes.light}
           resetPalette={useCallback(() => dispatch(setPalette('light', defaultLight)), [dispatch])}

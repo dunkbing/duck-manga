@@ -1,4 +1,5 @@
-import { createStyles, ListItemText, makeStyles, Theme, Typography, useMediaQuery, useTheme } from '@material-ui/core';
+import { ListItemText, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { DuckChip } from '../../DuckChip';
 import { MangaRating } from '../MangaRating';
 import { memo } from 'react';
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0.5),
       margin: 0,
     },
-  })
+  }),
 );
 
 export const MangaListItemDesc = memo((manga: Manga) => {
@@ -50,7 +51,7 @@ export const MangaListItemDesc = memo((manga: Manga) => {
       <div className={classes.footer}>
         <ul className={classes.genres}>
           {manga.genres?.map((genre) => (
-            <DuckChip key={genre} component="li" label={genre} />
+            <DuckChip key={genre} component='li' label={genre} />
           ))}
         </ul>
       </div>

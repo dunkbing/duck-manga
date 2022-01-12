@@ -1,4 +1,5 @@
-import { createStyles, makeStyles, Snackbar, Theme } from '@material-ui/core';
+import { createStyles, Snackbar, Theme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { memo, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { dismissError } from '../../redux/errors/actions';
@@ -16,7 +17,7 @@ const useStyles = makeStyles<Theme, Props>(() =>
     anchorOriginBottomRight: {
       bottom: ({ index }) => `calc(${index * 60}px + 24px)`,
     },
-  })
+  }),
 );
 
 export const ErrorSnackbar = memo((props: Props) => {
@@ -36,7 +37,7 @@ export const ErrorSnackbar = memo((props: Props) => {
       setOpen(false);
       dispatch(dismissError(props.error.id));
     },
-    [setOpen, dispatch, props.error.id]
+    [setOpen, dispatch, props.error.id],
   );
 
   return (
@@ -47,7 +48,7 @@ export const ErrorSnackbar = memo((props: Props) => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         classes={{ anchorOriginBottomRight: classes.anchorOriginBottomRight }}
       >
-        <AppAlert onClose={handleClose} onClick={() => setDialogOpen(true)} severity="error">
+        <AppAlert onClose={handleClose} onClick={() => setDialogOpen(true)} severity='error'>
           {props.error.title}
         </AppAlert>
       </Snackbar>

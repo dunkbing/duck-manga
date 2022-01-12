@@ -1,8 +1,9 @@
-import { createStyles, Divider, Link, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Divider, Link, Theme, Typography } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { DuckChip } from '../../DuckChip';
 import { MangaRating } from '../MangaRating';
 import { memo } from 'react';
-import { Skeleton } from '@material-ui/lab';
+import { Skeleton } from '@mui/lab';
 import { DetailSave } from './DetailSave';
 import { Manga } from '@duck-manga/shared-types';
 
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     source: {},
     divider: { margin: `${theme.spacing(2)}px 0` },
-  })
+  }),
 );
 
 type Props = {
@@ -59,7 +60,7 @@ export const DetailDescription = memo(({ manga }: Props) => {
 
       <ul className={classes.genres}>
         {manga?.genres?.map((genre) => (
-          <DuckChip key={genre} component="li" label={genre} />
+          <DuckChip key={genre} component='li' label={genre} />
         ))}
       </ul>
 
@@ -81,12 +82,12 @@ export const DetailDescription = memo(({ manga }: Props) => {
       ) : null}
 
       <div>
-        <Link className={classes.source} target="_blank" href={manga?.sourceUrl}>
+        <Link className={classes.source} target='_blank' href={manga?.sourceUrl}>
           {manga?.source ? (
-            <Typography variant="body1">Read on {manga.source}</Typography>
+            <Typography variant='body1'>Read on {manga.source}</Typography>
           ) : (
             <Skeleton>
-              <Typography variant="body1">Read on SomeSource</Typography>
+              <Typography variant='body1'>Read on SomeSource</Typography>
             </Skeleton>
           )}
         </Link>
@@ -97,12 +98,12 @@ export const DetailDescription = memo(({ manga }: Props) => {
         <Typography>{manga.description}</Typography>
       ) : (
         <>
-          <Skeleton width="100%" />
-          <Skeleton width="70%" />
-          <Skeleton width="50%" />
-          <Skeleton width="80%" />
-          <Skeleton width="80%" />
-          <Skeleton width="90%" />
+          <Skeleton width='100%' />
+          <Skeleton width='70%' />
+          <Skeleton width='50%' />
+          <Skeleton width='80%' />
+          <Skeleton width='80%' />
+          <Skeleton width='90%' />
         </>
       )}
     </div>

@@ -1,16 +1,15 @@
 import '../style/global.css';
 import { useMemo } from 'react';
 import { AppProps } from 'next/app';
-import { createTheme, createStyles, LinearProgress, makeStyles, Theme, ThemeOptions } from '@material-ui/core';
 import Head from 'next/head';
+import { createTheme, LinearProgress, Theme, ThemeOptions, Box, Container, ThemeProvider, CssBaseline } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { useSelector, useStore } from 'react-redux';
 import { RootState, StoreType, wrapper } from '../redux/store';
 import { useCustomInterceptors } from '../common/axios';
-import { Box, Container, ThemeProvider } from '@material-ui/core';
 import { NavigationHeader } from '../components/header/NavigationHeader';
 import { useRouter } from 'next/router';
 import { useCustomEventListeners } from '../common/customListeners';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { defaultDark } from '../redux/theme/defaults';
 import { getBaseOpenGraph } from '../common/opengraph';
 import { ErrorSnackbar } from '../components/error/ErrorSnackbar';
@@ -47,7 +46,7 @@ const useStyles = (theme: Theme) =>
         zIndex: 9999, // to render over header
         width: '100vw',
       },
-    })
+    }),
   );
 
 function WrappedApp({ Component, pageProps }: AppProps) {
@@ -77,17 +76,10 @@ function WrappedApp({ Component, pageProps }: AppProps) {
           Duck Manga
           {process.env.NODE_ENV === 'development' ? ' DEV' : ''}
         </title>
-        <meta
-          name="viewport"
-          id="viewport"
-          content="width=device-width, viewport-fit=cover, initial-scale=1, user-scalable=0"
-        />
-        <meta name="apple-mobile-web-app-capable" content="yes"></meta>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></meta>
-        <meta
-          name="theme-color"
-          content={theme.palette.type === 'dark' ? theme.palette.grey['800'] : theme.palette.primary.main}
-        />
+        <meta name='viewport' id='viewport' content='width=device-width, viewport-fit=cover, initial-scale=1, user-scalable=0' />
+        <meta name='apple-mobile-web-app-capable' content='yes'></meta>
+        <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'></meta>
+        <meta name='theme-color' content={theme.palette.mode === 'dark' ? theme.palette.grey['800'] : theme.palette.primary.main} />
 
         {getBaseOpenGraph()}
       </Head>
@@ -98,13 +90,13 @@ function WrappedApp({ Component, pageProps }: AppProps) {
           {!/^\/read/.test(router.asPath) ? (
             <>
               <NavigationHeader />
-              <Container maxWidth="md" component="main" className={classes.main}>
+              <Container maxWidth='md' component='main' className={classes.main}>
                 <Component {...pageProps} />
               </Container>
             </>
           ) : (
             // We don't want to render header when in reader mode
-            <Container maxWidth="md" component="main" className={classes.readerMain}>
+            <Container maxWidth='md' component='main' className={classes.readerMain}>
               <Component {...pageProps} />
             </Container>
           )}

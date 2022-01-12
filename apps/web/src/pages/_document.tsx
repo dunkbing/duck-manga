@@ -1,19 +1,19 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 import { Children } from 'react';
 
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang='en'>
         <Head>
-          <meta charSet="UTF-8" />
-          <meta name="referrer" content="no-referrer" />
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="icon" href="/favicon.ico" />
-          <link rel="apple-touch-icon" href="/favicon.ico" />
-          <link rel="stylesheet" href={'https://fonts.googleapis.com/css?family=Roboto&display=swap'} />
-          <link rel="stylesheet" href={'https://fonts.googleapis.com/css?family=Montserrat&display=swap'} />
+          <meta charSet='UTF-8' />
+          <meta name='referrer' content='no-referrer' />
+          <link rel='manifest' href='/manifest.json' />
+          <link rel='icon' href='/favicon.ico' />
+          <link rel='apple-touch-icon' href='/favicon.ico' />
+          <link rel='stylesheet' href={'https://fonts.googleapis.com/css?family=Roboto&display=swap'} />
+          <link rel='stylesheet' href={'https://fonts.googleapis.com/css?family=Montserrat&display=swap'} />
         </Head>
 
         <body>

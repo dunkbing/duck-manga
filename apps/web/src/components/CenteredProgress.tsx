@@ -1,4 +1,5 @@
-import { CircularProgress, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { CircularProgress, Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 
 type Props = {
   spinnerSize?: number;
@@ -18,7 +19,7 @@ const useStyles = makeStyles<Theme, Props>(() =>
       width: ({ spinnerSize }) => `${spinnerSize}rem !important`,
       height: ({ spinnerSize }) => `${spinnerSize}rem !important`,
     },
-  })
+  }),
 );
 
 export const CenteredProgress = ({ spinnerSize }: Props) => {

@@ -1,5 +1,6 @@
 import { HTMLAttributes, useCallback, useMemo } from 'react';
-import { AppBar, createStyles, makeStyles, Tab, Tabs, Theme, useTheme } from '@material-ui/core';
+import { AppBar, createStyles, Tab, Tabs, Theme, useTheme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import SwipeableViews from 'react-swipeable-views';
 import { useRouter } from 'next/router';
 import { shallowNavigate } from '../common/router';
@@ -15,7 +16,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
@@ -38,7 +39,7 @@ type Props = {
   children: Array<JSX.Element>;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
     appBar: {
       boxShadow: 'none',
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
     tabPanel: {
       minHeight: '100vh',
     },
-  })
+  }),
 );
 
 export function SwipeableTabs({ panelNames, children }: Props) {
@@ -70,19 +71,19 @@ export function SwipeableTabs({ panelNames, children }: Props) {
     (value: number) => {
       shallowNavigate(router, `${router.asPath.split('?')[0]}?tab=${value}`, 'replace');
     },
-    [router]
+    [router],
   );
   const handleChange = useCallback(
     (_, newValue: number) => {
       changeTab(newValue);
     },
-    [changeTab]
+    [changeTab],
   );
 
   return (
     <>
-      <AppBar position="static" color="default" className={classes.appBar}>
-        <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="fullWidth">
+      <AppBar position='static' color='default' className={classes.appBar}>
+        <Tabs value={value} onChange={handleChange} indicatorColor='primary' textColor='primary' variant='fullWidth'>
           {panelNames.map((label, index) => (
             <Tab className={classes.tab} key={index} label={label} {...a11yProps(index)} />
           ))}

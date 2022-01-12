@@ -1,6 +1,6 @@
-import { createStyles, makeStyles } from '@material-ui/core';
+import { Avatar } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { memo } from 'react';
-import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -8,7 +8,7 @@ const useStyles = makeStyles(() =>
       height: '100%',
       width: '100%',
     },
-  })
+  }),
 );
 
 type Props = {
@@ -18,5 +18,5 @@ type Props = {
 export const ChapterImage = memo(({ image }: Props) => {
   // TODO: add click handler
   const classes = useStyles();
-  return <Avatar variant="square" className={classes.image} src={image} />;
+  return <Avatar variant='square' className={classes.image} src={image} />;
 });

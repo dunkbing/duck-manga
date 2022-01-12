@@ -1,12 +1,4 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import { AppError } from '../../redux/errors/types';
 
 type Props = {
@@ -17,23 +9,17 @@ type Props = {
 
 export const ErrorDialog = ({ error, open, handleClose }: Props) => {
   return (
-    <Dialog
-      open={open}
-      fullWidth
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle id="alert-dialog-title">{error.title}</DialogTitle>
+    <Dialog open={open} fullWidth onClose={handleClose} aria-labelledby='alert-dialog-title' aria-describedby='alert-dialog-description'>
+      <DialogTitle id='alert-dialog-title'>{error.title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          {error.url ? <Typography variant="body1">URL: {error.url}</Typography> : null}
+        <DialogContentText id='alert-dialog-description'>
+          {error.url ? <Typography variant='body1'>URL: {error.url}</Typography> : null}
           <br />
-          {error.message ? <Typography variant="body1">{error.message}</Typography> : null}
+          {error.message ? <Typography variant='body1'>{error.message}</Typography> : null}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleClose} color='primary'>
           Close
         </Button>
       </DialogActions>

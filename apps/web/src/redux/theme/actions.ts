@@ -1,8 +1,8 @@
-import { PaletteType } from '@material-ui/core';
-import { PaletteOptions } from '@material-ui/core/styles/createPalette';
+import { PaletteMode } from '@mui/material';
+import { PaletteOptions } from '@mui/material/styles/createPalette';
 import { createAction } from '@reduxjs/toolkit';
 
-export const setThemeType = createAction<PaletteType>('theme/setType');
-export const setPalette = createAction('theme/setPalette', (mode: PaletteType, options: PaletteOptions) => {
+export const setThemeMode = createAction<PaletteMode>('theme/setType');
+export const setPalette = createAction('theme/setPalette', (mode: PaletteMode, options: PaletteOptions) => {
   return { payload: { mode, options } };
 });

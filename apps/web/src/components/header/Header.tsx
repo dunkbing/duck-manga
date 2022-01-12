@@ -1,20 +1,19 @@
 import { MouseEventHandler } from 'react';
-import { AppBar, AppBarProps, createStyles, IconButton, makeStyles, Theme, Toolbar } from '@material-ui/core';
+import { AppBar, AppBarProps, createStyles, IconButton, Theme, Toolbar } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { forwardRef } from 'react';
 
 const useStyles = makeStyles<Theme, { backgroundColor?: string }>((theme: Theme) =>
   createStyles({
     '@global': {
       header: {
-        backgroundColor: `${
-          theme.palette.type === 'dark' ? theme.palette.grey['800'] : theme.palette.primary.main
-        } !important`,
+        backgroundColor: `${theme.palette.mode === 'dark' ? theme.palette.grey['800'] : theme.palette.primary.main} !important`,
       },
     },
     navbar: {},
     toolbar: {},
     toolbarIcon: {},
-  })
+  }),
 );
 
 type Props = {
@@ -38,5 +37,5 @@ export const Header = forwardRef<any, Props>(
         </Toolbar>
       </AppBar>
     );
-  }
+  },
 );

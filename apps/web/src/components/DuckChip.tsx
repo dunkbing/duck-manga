@@ -1,5 +1,6 @@
 import { forwardRef, Ref } from 'react';
-import { Chip, ChipProps, createStyles, makeStyles, Theme, useMediaQuery, useTheme } from '@material-ui/core';
+import { Chip, ChipProps, createStyles, Theme, useMediaQuery, useTheme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 'large',
       borderRadius: 5,
     },
-  })
+  }),
 );
 
 export type DuckChipProps = ChipProps<any, { component: any }>;
@@ -22,5 +23,5 @@ export const DuckChip = forwardRef<any, DuckChipProps>((props: DuckChipProps, re
   const theme = useTheme();
   const smallMedia = useMediaQuery(theme.breakpoints.down('sm'));
 
-  return <Chip size={smallMedia ? 'small' : 'medium'} color="primary" className={classes.root} ref={ref} {...props} />;
+  return <Chip size={smallMedia ? 'small' : 'medium'} color='primary' className={classes.root} ref={ref} {...props} />;
 });

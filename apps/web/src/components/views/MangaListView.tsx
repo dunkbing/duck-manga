@@ -1,14 +1,15 @@
 import { MangaList } from '@duck-manga/shared-types';
-import { createStyles, List, makeStyles, Typography } from '@material-ui/core';
+import { List, Theme, Typography } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { MangaListItem } from '../../components/manga/list/MangaListItem';
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       paddingTop: theme.spacing(2),
       minHeight: '100vh',
     },
-  })
+  }),
 );
 
 type Props = {
@@ -22,7 +23,7 @@ export const MangaListView = ({ header, mangaList }: Props) => {
   return (
     <div className={classes.root}>
       {header ? (
-        <Typography variant="h4" align="center" gutterBottom>
+        <Typography variant='h4' align='center' gutterBottom>
           {header}
         </Typography>
       ) : null}

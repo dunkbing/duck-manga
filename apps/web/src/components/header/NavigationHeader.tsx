@@ -1,11 +1,12 @@
 import { FormEvent, useRef, useState } from 'react';
-import { createStyles, Input, makeStyles, Theme } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { createStyles, Input, Theme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { HeaderDrawer } from './HeaderDrawer';
 import { Header } from './Header';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
     toolbar: {
       display: 'flex',
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
         padding: theme.spacing(1, 3),
       },
     },
-  })
+  }),
 );
 
 export const searchInputId = 'search-input';
@@ -62,17 +63,11 @@ export function NavigationHeader() {
         className={classes.header}
         icon={<MenuIcon />}
         onIconClick={toggleDrawer(true)}
-        position="sticky"
+        position='sticky'
         classes={{ toolbar: classes.toolbar }}
       >
-        <form onSubmit={submitSearch} autoComplete="off">
-          <Input
-            name="name"
-            id={searchInputId}
-            inputRef={searchInputRef}
-            className={classes.search}
-            placeholder="Search"
-          />
+        <form onSubmit={submitSearch} autoComplete='off'>
+          <Input name='name' id={searchInputId} inputRef={searchInputRef} className={classes.search} placeholder='Search' />
         </form>
       </Header>
     </>

@@ -1,5 +1,6 @@
 import { useState, MouseEvent, useMemo } from 'react';
-import { createStyles, Divider, List, makeStyles, MenuItem, Theme, useMediaQuery } from '@material-ui/core';
+import { Divider, List, MenuItem, Theme, useMediaQuery } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import { ThemePage } from '../components/settings/theme/ThemePage';
 
 const mediaPx = 500;
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
         padding: theme.spacing(1),
       },
     },
-  })
+  }),
 );
 
 export default function Settings() {
@@ -60,7 +61,7 @@ export default function Settings() {
     <div className={classes.root}>
       <div className={classes.sidebar}>
         <List>
-          <MenuItem data-item="theme" onClick={handleClick} selected={menuItem === 'theme'}>
+          <MenuItem data-item='theme' onClick={handleClick} selected={menuItem === 'theme'}>
             Theme
           </MenuItem>
         </List>

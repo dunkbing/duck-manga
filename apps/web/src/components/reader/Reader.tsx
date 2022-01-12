@@ -1,10 +1,10 @@
-import { createStyles, makeStyles } from '@material-ui/core';
+import { Dispatch, MouseEventHandler, SetStateAction, useMemo } from 'react';
+import { createStyles, makeStyles } from '@mui/styles';
 import { useKeyboardScroll, useNextChapterLink } from '../pager/hooks';
 import { CurrentChapter, CurrentChapterImages } from '../../redux/manga/reducer';
 import { ReaderMode } from './types';
 import { DefaultPager } from '../pager/DefaultPager';
 import { WebtoonPager } from '../pager/WebtoonPager';
-import { Dispatch, MouseEventHandler, SetStateAction, useMemo } from 'react';
 import { Manga } from '@duck-manga/shared-types';
 
 const useStyles = makeStyles(() =>
@@ -13,7 +13,7 @@ const useStyles = makeStyles(() =>
       minHeight: '100vh',
       padding: 'auto',
     },
-  })
+  }),
 );
 
 type Props = {

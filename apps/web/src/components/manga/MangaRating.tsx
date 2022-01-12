@@ -1,11 +1,11 @@
 import { forwardRef, Ref } from 'react';
-import { createStyles, makeStyles } from '@material-ui/core';
-import { Rating, RatingProps } from '@material-ui/lab';
+import { createStyles, makeStyles } from '@mui/styles';
+import { Rating, RatingProps } from '@mui/lab';
 
 const useStyles = makeStyles(() =>
   createStyles({
     root: {},
-  })
+  }),
 );
 
 export const MangaRating = forwardRef<any, RatingProps>(({ value, ...props }: RatingProps, ref: Ref<any>) => {

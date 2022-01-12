@@ -1,6 +1,7 @@
 import { forwardRef, Ref } from 'react';
-import { createStyles, darken, lighten, makeStyles, Theme } from '@material-ui/core';
-import Alert, { AlertProps } from '@material-ui/lab/Alert';
+import { createStyles, darken, lighten, Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import Alert, { AlertProps } from '@mui/lab/Alert';
 
 type Severity = 'error' | 'info' | 'success' | 'warning';
 
@@ -9,7 +10,7 @@ const useStyles = makeStyles<Theme, AppAlertProps>((theme: Theme) =>
     root: {
       color: theme.palette.text.primary,
       backgroundColor: ({ severity }) => {
-        const getColor = theme.palette.type == 'dark' ? darken : lighten;
+        const getColor = theme.palette.mode == 'dark' ? darken : lighten;
         return getColor(theme.palette[severity as Severity].main, 0.3);
       },
       cursor: 'pointer',
@@ -20,7 +21,7 @@ const useStyles = makeStyles<Theme, AppAlertProps>((theme: Theme) =>
       overflowX: 'clip',
       textOverflow: 'ellipsis ellipsis',
     },
-  })
+  }),
 );
 
 export type AppAlertProps = Omit<AlertProps, 'severity'> & { severity: Severity };

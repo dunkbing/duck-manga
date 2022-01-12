@@ -1,16 +1,17 @@
 import React, { Dispatch, MouseEvent, SetStateAction, useCallback, useEffect, useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import ForwardIcon from '@material-ui/icons/Forward';
-import ExitIcon from '@material-ui/icons/ExitToApp';
+import { makeStyles } from '@mui/styles';
+import Fab from '@mui/material/Fab';
+import ForwardIcon from '@mui/icons-material/Forward';
+import ExitIcon from '@mui/icons-material/ExitToApp';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { getNextChapter } from '../pager/hooks';
 import { fetchChapterImages, setCurrentChapter } from '../../redux/manga/actions';
 import { shallowNavigate } from '../../common/router';
+import { Theme } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme: Theme) => ({
   goNext: {
     color: theme.palette.text.primary,
     position: 'absolute',
@@ -30,7 +31,7 @@ export const GoNextButton = ({ nextUrl, setCurrentImage, exit }: Props) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { current: manga, chapter } = useSelector((state: RootState) => state.manga);
-  const nextChapter = useMemo(() => manga ? getNextChapter(manga, chapter) : undefined, [manga, chapter]);
+  const nextChapter = useMemo(() => (manga ? getNextChapter(manga, chapter) : undefined), [manga, chapter]);
 
   useEffect(() => {
     router.prefetch(String(nextUrl));
@@ -50,11 +51,11 @@ export const GoNextButton = ({ nextUrl, setCurrentImage, exit }: Props) => {
         }
       }
     },
-    [nextUrl, exit, setCurrentImage, nextChapter, router, dispatch]
+    [nextUrl, exit, setCurrentImage, nextChapter, router, dispatch],
   );
 
   return (
-    <Fab className={classes.goNext} aria-label="goNext" variant="round" color="primary" onClick={goNext}>
+    <Fab className={classes.goNext} aria-label='goNext' variant='circular' color='primary' onClick={goNext}>
       {!exit ? <ForwardIcon /> : <ExitIcon />}
     </Fab>
   );

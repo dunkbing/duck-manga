@@ -1,6 +1,6 @@
 import { Dispatch, forwardRef, Ref, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
-import { createStyles, makeStyles } from '@material-ui/core';
-import { Avatar } from '@material-ui/core';
+import { createStyles, makeStyles } from '@mui/styles';
+import { Avatar } from '@mui/material';
 import { CenteredProgress } from '../CenteredProgress';
 import { Dispatch as RDispatch } from '@reduxjs/toolkit';
 import { CurrentChapter } from '../../redux/manga/reducer';
@@ -14,7 +14,7 @@ const useStyles = makeStyles(() =>
       height: 'auto',
       width: '100%',
     },
-  })
+  }),
 );
 
 export type ReaderImageProps = {
@@ -28,10 +28,7 @@ export type ReaderImageProps = {
 };
 
 export const PagerImage = forwardRef(
-  (
-    { image, current, position, onCurrent, persist, classes: propClasses, setHeaderImageNumber }: ReaderImageProps,
-    ref: Ref<any>
-  ) => {
+  ({ image, current, position, onCurrent, persist, classes: propClasses, setHeaderImageNumber }: ReaderImageProps, ref: Ref<any>) => {
     /**
      * Component for image rendering. Will show circular progress until the image is loaded. Loading starts lazily
      * @param image Image link
@@ -70,10 +67,10 @@ export const PagerImage = forwardRef(
 
     return (
       <div className={classes.root} ref={ref}>
-        {shouldRender ? <Avatar variant="square" className={classes.chapterImage} src={image} /> : <CenteredProgress />}
+        {shouldRender ? <Avatar variant='square' className={classes.chapterImage} src={image} /> : <CenteredProgress />}
       </div>
     );
-  }
+  },
 );
 
 /**
@@ -84,5 +81,5 @@ export const useSetReadOnCurrent = (dispatch: RDispatch, mangaId: number, chapte
     (position: number) => {
       if (chapter && chapter.images && position >= chapter.images.length / 2) dispatch(setRead(mangaId, chapter.id));
     },
-    [dispatch, mangaId, chapter]
+    [dispatch, mangaId, chapter],
   );

@@ -1,4 +1,4 @@
-import { createStyles, makeStyles } from '@material-ui/core';
+import { createStyles, makeStyles } from '@mui/styles';
 import { DetailHeader } from './DetailHeader';
 import { DetailDescription } from './DetailDescription';
 import { Manga } from '@duck-manga/shared-types';
@@ -6,7 +6,7 @@ import { Manga } from '@duck-manga/shared-types';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {},
-  })
+  }),
 );
 
 type Props = {

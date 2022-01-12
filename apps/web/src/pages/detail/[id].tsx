@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Box, createStyles, List, makeStyles } from '@material-ui/core';
+import { Box, List } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch, wrapper } from '../../redux/store';
@@ -11,7 +12,7 @@ import { ChapterList } from '../../components/manga/detail/chapter/ChapterList';
 import { useInitialEffect } from '../../common/hooks';
 import { MangaDetail } from '../../components/manga/detail/MangaDetail';
 import { requestMangaData, reRequestMangaData } from '../../redux/manga/utils';
-import { Skeleton } from '@material-ui/lab';
+import { Skeleton } from '@mui/lab';
 import { ChapterItem } from '../../components/manga/detail/chapter/ChapterItem';
 import { getOpenGraphForManga } from '../../common/opengraph';
 import { isClientSideNavigation } from '../../common/router';
