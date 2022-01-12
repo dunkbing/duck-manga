@@ -105,8 +105,8 @@ export default function Detail({ mangaId }: Props) {
  *        This is because there is not hydration if we redirect from SSR and we want to show error alerts
  * 3. If it's not provided - redirect to search
  */
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query }) => {
-  console.log('2. Page.getServerSideProps uses the store to dispatch things');
+export const getServerSideProps: GetServerSideProps<Props> = wrapper.getServerSideProps((store) => async ({ req, query }) => {
+  console.log('Page.getServerSideProps uses the store to dispatch things');
   store.dispatch({ type: 'TICK', payload: 'was set in other page' });
   const clientSideNavigation = isClientSideNavigation(req);
   const mangaId = Number(query?.id);
@@ -124,7 +124,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       Sentry.captureException(e);
       captureAxiosToError(store.dispatch, error);
       return {
-        props: {},
+        props: { mangaId: null },
       };
     }
   }

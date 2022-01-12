@@ -135,9 +135,9 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       const error = e as AxiosError;
       if (error?.response?.status === 404) return { notFound: true };
       Sentry.captureException(e);
-      await captureAxiosToError(store.dispatch, error);
+      captureAxiosToError(store.dispatch, error);
       return {
-        props: {},
+        props: { mangaId: null },
       };
     }
   }
