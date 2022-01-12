@@ -26,7 +26,7 @@ const useStyles = makeStyles(() =>
     chapterSkeleton: {
       height: '3rem',
     },
-  })
+  }),
 );
 
 type Props = {
@@ -84,7 +84,7 @@ export default function Detail({ mangaId }: Props) {
           ) : (
             <List>
               {Array.from(Array(17), (_, i) => (
-                <Skeleton key={i} width="100%">
+                <Skeleton key={i} width='100%'>
                   <ChapterItem chapter={{} as any} mangaId={0} index={0} />
                 </Skeleton>
               ))}

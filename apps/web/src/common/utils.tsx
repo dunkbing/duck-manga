@@ -25,9 +25,9 @@ export function utcDate(date?: Date) {
 export function captureAxiosToError(dispatch: AppDispatch, error: AxiosError, title?: string) {
   return dispatch(
     addError({
-      title: title || 'Ошибка',
+      title: title || 'Error',
       url: error.config.url ? baseUrl + error.config.url : undefined,
       message: String(error),
-    })
+    }),
   );
 }
