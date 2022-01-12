@@ -30,6 +30,7 @@
     "cookie": "^0.4.1",
     "core-js": "^3.20.2",
     "dotenv": "^11.0.0",
+    "fastify": "^3.25.3",
     "mui-color": "^2.0.0-beta.2",
     "next": "12.0.7",
     "next-redux-wrapper": "^7.0.5",
