@@ -27,11 +27,7 @@ export class CrudService {
     return this.queryRunner.manager.save(value);
   }
 
-  protected async updateData(
-    target: any,
-    criteria: any,
-    value: any
-  ): Promise<any> {
+  protected async updateData(target: any, criteria: any, value: any): Promise<any> {
     return this.queryRunner.manager.update(target, criteria, value);
   }
 

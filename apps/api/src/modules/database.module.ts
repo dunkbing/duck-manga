@@ -7,13 +7,7 @@ const port = Number(process.env.DB_PORT);
 const username = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 const database = process.env.DB_NAME;
-const entities = [
-  AuthorEntity,
-  CategoryEntity,
-  ChapterEntity,
-  GenreEntity,
-  MangaEntity,
-];
+const entities = [AuthorEntity, CategoryEntity, ChapterEntity, GenreEntity, MangaEntity];
 const synchronize = true;
 
 @Module({

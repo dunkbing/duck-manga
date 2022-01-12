@@ -1,4 +1,4 @@
-import { Chapters } from "./chapter";
+import { Chapters } from './chapter';
 
 export interface Manga {
   id: number;
@@ -10,17 +10,17 @@ export interface Manga {
   description: string;
   source?: string;
   sourceUrl?: string;
+  status?: string;
+  year?: string;
+  updatedDetail?: string;
+  updatedChapters?: string;
   authors?: string[];
   genres?: string[];
   categories?: string[];
-  status?: string;
-  year?: string;
   chapters?: Chapters;
-  updatedDetail?: string;
-  updatedChapters?: string;
 }
 
-export type MangaList = Array<Manga>
+export type MangaList = Array<Manga>;
 
 export interface MangaSearchResult {
   count: number;
