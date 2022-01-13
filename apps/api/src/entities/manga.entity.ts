@@ -1,7 +1,6 @@
 import { MangaStatus } from '@duck-manga/shared-types';
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { AuthorEntity } from './author.entity';
-import { CategoryEntity } from './category.entity';
 import { ChapterEntity } from './chapter.entity';
 import { GenreEntity } from './genre.entity';
 import { MANGAS_AUTHORS, MANGAS_GENRES } from './joined-table';
@@ -39,14 +38,18 @@ export class MangaEntity {
   chapters: ChapterEntity[];
 
   @ManyToMany(() => AuthorEntity)
-  @JoinTable({ name: MANGAS_AUTHORS })
+  @JoinTable({
+    name: MANGAS_AUTHORS,
+    joinColumn: { name: 'mangaId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'authorId', referencedColumnName: 'id' },
+  })
   authors: AuthorEntity[];
 
   @ManyToMany(() => GenreEntity)
-  @JoinTable({ name: MANGAS_GENRES })
+  @JoinTable({
+    name: MANGAS_GENRES,
+    joinColumn: { name: 'mangaId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'genreId', referencedColumnName: 'id' },
+  })
   genres: GenreEntity[];
-
-  @ManyToMany(() => CategoryEntity)
-  @JoinTable()
-  categories: CategoryEntity[];
 }

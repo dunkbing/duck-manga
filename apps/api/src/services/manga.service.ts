@@ -20,12 +20,12 @@ export class MangaService extends CrudService {
     const authors = await this.authorRepository
       .createQueryBuilder('author')
       .select('author.name', 'name')
-      .innerJoin(`${MANGAS_AUTHORS}`, 'ma', 'author.id = ma.authorsId AND ma.mangasId = :id', { id })
+      .innerJoin(`${MANGAS_AUTHORS}`, 'ma', 'author.id = ma.authorId AND ma.mangaId = :id', { id })
       .getRawMany();
     const genres = await getRepository(GenreEntity)
       .createQueryBuilder('genre')
       .select('genre.name', 'name')
-      .innerJoin(`${MANGAS_GENRES}`, 'mg', 'genre.id = mg.genresId AND mg.mangasId = :id', { id })
+      .innerJoin(`${MANGAS_GENRES}`, 'mg', 'genre.id = mg.genreId AND mg.mangaId = :id', { id })
       .getRawMany();
     const chapters = (await getRepository(ChapterEntity)
       .createQueryBuilder('chapter')
