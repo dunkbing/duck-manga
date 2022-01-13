@@ -1,10 +1,13 @@
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useCallback, useRef, useState } from 'react';
 import { createStyles, Input, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { HeaderDrawer } from './HeaderDrawer';
 import { Header } from './Header';
+import ThemeSwitch from '../settings/ThemeSwitch';
+import { useDispatch } from 'react-redux';
+import { setThemeMode } from '../../redux/theme/actions';
 
 const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
@@ -36,11 +39,17 @@ export const searchInputId = 'search-input';
 export function NavigationHeader() {
   const classes = useStyles();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [drawer, setDrawer] = useState(false);
+
   const toggleDrawer = (value: boolean) => () => {
     setDrawer(value);
   };
+
+  const toggleTheme = useCallback((_, checked: boolean) => {
+    dispatch(setThemeMode(checked ? 'dark' : 'light'));
+  }, []);
 
   const searchInputRef = useRef<HTMLInputElement>();
 
@@ -69,6 +78,7 @@ export function NavigationHeader() {
         <form onSubmit={submitSearch} autoComplete='off'>
           <Input name='name' id={searchInputId} inputRef={searchInputRef} className={classes.search} placeholder='Search' />
         </form>
+        <ThemeSwitch onChange={toggleTheme} sx={{ m: 1 }} />
       </Header>
     </>
   );
