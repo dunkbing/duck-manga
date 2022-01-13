@@ -1,4 +1,4 @@
-import { Chapter, Manga } from '@duck-manga/shared-types';
+import { Chapter, Manga, MangaSearchResult } from '@duck-manga/shared-types';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getConnection, getRepository, Repository } from 'typeorm';
@@ -41,9 +41,24 @@ export class MangaService extends CrudService {
     return manga;
   }
 
-  getChapters(mangaId: number): Promise<Chapter[]> {
-    const chapters = getRepository(ChapterEntity).createQueryBuilder('chapter').where('chapter.mangaId = :id', { id: mangaId }).getMany();
+  async getChapters(mangaId: number): Promise<Chapter[]> {
+    const chapters = await getRepository(ChapterEntity)
+      .createQueryBuilder('chapter')
+      .where('chapter.mangaId = :id', { id: mangaId })
+      .getMany();
 
     return chapters;
+  }
+
+  async search(title: string): Promise<MangaSearchResult> {
+    const results = await this.mangaRepository
+      .createQueryBuilder('manga')
+      .where('manga.title LIKE :title', { title: `%${title}%` })
+      .getMany();
+
+    return {
+      results: results as any,
+      count: results.length,
+    };
   }
 }

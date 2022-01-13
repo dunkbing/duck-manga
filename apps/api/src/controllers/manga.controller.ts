@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Param, Query, Res } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
 import { MangaRequestParams } from '@duck-manga/shared-types';
 import { MangaService } from '../services/manga.service';
@@ -17,5 +17,11 @@ export class MangaController {
   async getChapters(@Param() params: MangaRequestParams, @Res() res: FastifyReply): Promise<any> {
     const chapters = await this.mangaService.getChapters(params.id);
     return res.send(chapters);
+  }
+
+  @Get('search')
+  async search(@Query('title') title: string, @Res() res: FastifyReply): Promise<any> {
+    const results = await this.mangaService.search(title);
+    return res.status(HttpStatus.OK).send(results);
   }
 }
