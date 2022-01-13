@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getConnection, getRepository, Repository } from 'typeorm';
 import { AuthorEntity, ChapterEntity, GenreEntity, MangaEntity } from '../entities';
+import { MANGAS_AUTHORS, MANGAS_GENRES } from '../entities/joined-table';
 import { CrudService } from './crud.service';
 
 @Injectable()
@@ -14,19 +15,22 @@ export class MangaService extends CrudService {
     super();
   }
 
-  async get(id: number): Promise<any> {
+  async get(id: number): Promise<Manga> {
     const mangaEntity = await this.mangaRepository.findOne(id);
     const authors = await this.authorRepository
       .createQueryBuilder('author')
       .select('author.name', 'name')
-      .innerJoin('mangas_authors_authors', 'maa', 'author.id = maa.authorsId AND maa.mangasId = :id', { id })
+      .innerJoin(`${MANGAS_AUTHORS}`, 'ma', 'author.id = ma.authorsId AND ma.mangasId = :id', { id })
       .getRawMany();
     const genres = await getRepository(GenreEntity)
       .createQueryBuilder('genre')
       .select('genre.name', 'name')
-      .innerJoin('mangas_genres_genres', 'mg', 'genre.id = mg.genresId AND mg.mangasId = :id', { id })
+      .innerJoin(`${MANGAS_GENRES}`, 'mg', 'genre.id = mg.genresId AND mg.mangasId = :id', { id })
       .getRawMany();
-    const chapters = await getRepository(ChapterEntity).createQueryBuilder('chapter').where('chapter.mangaId = :id', { id }).getMany();
+    const chapters = (await getRepository(ChapterEntity)
+      .createQueryBuilder('chapter')
+      .where('chapter.mangaId = :id', { id })
+      .getMany()) as any;
 
     const manga = {
       ...mangaEntity,

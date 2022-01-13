@@ -1,13 +1,10 @@
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { AuthorEntity } from "./author.entity";
-import { CategoryEntity } from "./category.entity";
-import { ChapterEntity } from "./chapter.entity";
-import { GenreEntity } from "./genre.entity";
-
-export enum MangaStatus {
-  ONGOING,
-  COMPLETED,
-}
+import { MangaStatus } from '@duck-manga/shared-types';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { AuthorEntity } from './author.entity';
+import { CategoryEntity } from './category.entity';
+import { ChapterEntity } from './chapter.entity';
+import { GenreEntity } from './genre.entity';
+import { MANGAS_AUTHORS, MANGAS_GENRES } from './joined-table';
 
 @Entity({ name: 'mangas' })
 export class MangaEntity {
@@ -42,11 +39,11 @@ export class MangaEntity {
   chapters: ChapterEntity[];
 
   @ManyToMany(() => AuthorEntity)
-  @JoinTable()
+  @JoinTable({ name: MANGAS_AUTHORS })
   authors: AuthorEntity[];
 
   @ManyToMany(() => GenreEntity)
-  @JoinTable()
+  @JoinTable({ name: MANGAS_GENRES })
   genres: GenreEntity[];
 
   @ManyToMany(() => CategoryEntity)

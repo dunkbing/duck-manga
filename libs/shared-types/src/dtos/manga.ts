@@ -1,5 +1,10 @@
 import { Chapters } from './chapter';
 
+export enum MangaStatus {
+  ONGOING,
+  COMPLETED,
+}
+
 export interface Manga {
   id: number;
   title: string;
@@ -10,13 +15,13 @@ export interface Manga {
   description: string;
   source?: string;
   sourceUrl?: string;
-  status?: string;
+  status?: MangaStatus;
   year?: string;
   updatedDetail?: string;
   updatedChapters?: string;
   authors?: string[];
   genres?: string[];
-  categories?: string[];
+  // categories?: string[];
   chapters?: Chapters;
 }
 
