@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { MangaEntity } from "./manga.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ChapterImageEntity } from './chapter-image.entity';
+import { MangaEntity } from './manga.entity';
 
 @Entity({ name: 'chapters' })
 export class ChapterEntity {
@@ -13,6 +14,10 @@ export class ChapterEntity {
   volume: number;
   @Column('smallint')
   number: number;
+
   @ManyToOne(() => MangaEntity, (manga) => manga.chapters)
+  @JoinColumn({ name: 'mangaId' })
   manga: MangaEntity;
+  @OneToMany(() => ChapterImageEntity, (chapterImage) => chapterImage.chapter)
+  chapterImages: ChapterImageEntity[];
 }
