@@ -17,6 +17,11 @@
   "ignorePatterns": [
     "**/*"
   ],
+  "parserOptions": {
+    "@typescript-eslint/parser": {
+      "project": "./tsconfig.json"
+    }
+  },
   "plugins": [
     "@nrwl/nx",
     "react",

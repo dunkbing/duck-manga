@@ -61,7 +61,7 @@ export default function Detail({ mangaId }: Props) {
           }, 2000);
         });
     } else {
-      router.replace('/search');
+      void router.replace('/search');
     }
   });
 

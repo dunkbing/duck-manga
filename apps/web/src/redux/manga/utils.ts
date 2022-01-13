@@ -16,7 +16,8 @@ export const requestMangaData = async (id: number): Promise<Manga> => {
 /**
  * Make API call to fetch all manga and chapter data
  * @param mangaId manga DB id
- * @param chapterId chapter DB id
+ * @param volumeNumber
+ * @param chapterNumber
  */
 export const requestAllMangaData = async (
   mangaId: number,
