@@ -1,4 +1,4 @@
-import { Manga } from '@duck-manga/shared-types';
+import { Chapter, Manga } from '@duck-manga/shared-types';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getConnection, getRepository, Repository } from 'typeorm';
@@ -39,5 +39,11 @@ export class MangaService extends CrudService {
       chapters,
     };
     return manga;
+  }
+
+  getChapters(mangaId: number): Promise<Chapter[]> {
+    const chapters = getRepository(ChapterEntity).createQueryBuilder('chapter').where('chapter.mangaId = :id', { id: mangaId }).getMany();
+
+    return chapters;
   }
 }

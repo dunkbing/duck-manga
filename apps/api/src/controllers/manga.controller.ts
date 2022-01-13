@@ -12,4 +12,10 @@ export class MangaController {
     const manga = await this.mangaService.get(params.id);
     return res.send(manga);
   }
+
+  @Get(':id/chapters')
+  async getChapters(@Param() params: MangaRequestParams, @Res() res: FastifyReply): Promise<any> {
+    const chapters = await this.mangaService.getChapters(params.id);
+    return res.send(chapters);
+  }
 }
