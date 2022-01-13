@@ -8,7 +8,9 @@
     "web": "nx run web:serve",
     "all": "nx run-many --target=serve --projects=api,web --parallel=true",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "lint": "eslint ./apps/*/.{ts, tsx} --fix",
+    "format": "prettier --check ./apps"
   },
   "private": true,
   "dependencies": {
@@ -81,6 +83,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "jest": "27.4.7",
