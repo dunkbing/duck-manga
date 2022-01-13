@@ -23,17 +23,17 @@ export const fetchMangaChapters = createAsyncThunk<Chapters, number>(
   },
   {
     condition: mangaDidNotChange,
-  }
+  },
 );
 export const fetchChapterImages = createAsyncThunk<ChapterImages, number>(
   'manga/fetchChapterImages',
   async (id: number) => {
-    const response = await axios.get(`manga/${id}/images`);
+    const response = await axios.get(`chapter/${id}/images`);
     return response.data;
   },
   {
     condition: chapterDidNotChange,
-  }
+  },
 );
 
 export const setRead = createAction('manga/setRead', (mangaId: number, chapterId: number) => {
@@ -66,10 +66,8 @@ export const fetchAll = createAsyncThunk<
     const { data: chapters }: { data: Chapters } = await axios.get(`manga/${mangaId}/chapters`);
     console.log('2. Fetched chapters, getting image links');
 
-    const currentChapter = chapters.find(
-      (chapter) => chapter.volume === volumeNumber && chapter.number == chapterNumber
-    );
-    const { data: currentChapterImages } = await axios.get(`manga/${currentChapter?.id}/images`);
+    const currentChapter = chapters.find((chapter) => chapter.volume === volumeNumber && chapter.number == chapterNumber);
+    const { data: currentChapterImages } = await axios.get(`chapter/${currentChapter?.id}/images`);
     console.log('3. Fetched all\n<====');
 
     return {
@@ -85,5 +83,5 @@ export const fetchAll = createAsyncThunk<
   },
   {
     condition: ({ mangaId }, { getState }: any) => mangaDidNotChange(mangaId, { getState, extra: null }),
-  }
+  },
 );

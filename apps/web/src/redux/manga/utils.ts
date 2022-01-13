@@ -21,16 +21,14 @@ export const requestMangaData = async (id: number): Promise<Manga> => {
 export const requestAllMangaData = async (
   mangaId: number,
   volumeNumber: number,
-  chapterNumber: number
+  chapterNumber: number,
 ): Promise<{ current: Manga; chapter: CurrentChapter }> => {
   const { data: manga } = await axios.get(`manga/${mangaId}`);
   const { data: chapters } = await axios.get(`manga/${mangaId}/chapters`);
-  const currentChapter = chapters.find(
-    (chapter: Chapter) => chapter.volume === volumeNumber && chapter.number == chapterNumber
-  );
+  const currentChapter = chapters.find((chapter: Chapter) => chapter.volume === volumeNumber && chapter.number == chapterNumber);
   // Mimic Axios 404 error
   if (!currentChapter) throw { error: { response: { status: 404 } } };
-  const { data: images } = await axios.get(`manga/${currentChapter.id}/images`);
+  const { data: images } = await axios.get(`chapter/${currentChapter.id}/images`);
 
   return {
     current: {
