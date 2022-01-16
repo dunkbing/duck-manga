@@ -20,8 +20,9 @@ export class MangaController {
   }
 
   @Get('search')
-  async search(@Query('title') title: string, @Res() res: FastifyReply): Promise<any> {
-    const results = await this.mangaService.search(title);
+  async search(@Query('title') title: string, @Query('author') author: string, @Res() res: FastifyReply): Promise<any> {
+    console.log(title, author);
+    const results = await this.mangaService.search({ title, author });
     return res.status(HttpStatus.OK).send(results);
   }
 }

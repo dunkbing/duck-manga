@@ -37,3 +37,8 @@ export interface MangaSearchResult {
 export interface MangaRequestParams {
   id?: number;
 }
+
+export interface MangaSearchParams {
+  title?: string;
+  author?: string;
+}

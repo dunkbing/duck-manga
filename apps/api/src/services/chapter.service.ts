@@ -11,6 +11,10 @@ export class ChapterService extends CrudService {
     super();
   }
 
+  async getChapters(mangaId: number): Promise<ChapterEntity[]> {
+    return this.chapterRepository.createQueryBuilder('chapter').where('chapter.mangaId = :id', { id: mangaId }).getMany();
+  }
+
   async getImages(id: number): Promise<ChapterImages> {
     const images = await this.chapterRepository
       .createQueryBuilder('chapter')
