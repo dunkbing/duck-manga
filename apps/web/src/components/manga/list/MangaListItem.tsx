@@ -7,7 +7,7 @@ import { MangaListItemDesc } from './MangaListItemDesc';
 import { MangaImage } from '../MangaImage';
 import { setCurrentManga } from '../../../redux/manga/actions';
 import { memo } from 'react';
-import { mangaListImageSize } from '../../../core/constants';
+import { mangaThumbnailSize } from '../../../core/constants';
 import { navigateToDetail } from '../../../common/router';
 import { Manga } from '@duck-manga/shared-types';
 
@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: 0,
     },
     avatar: {
-      height: mangaListImageSize.height,
-      width: mangaListImageSize.width,
+      height: mangaThumbnailSize.height,
+      width: mangaThumbnailSize.width,
     },
   }),
 );

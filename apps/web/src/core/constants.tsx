@@ -14,7 +14,7 @@ export const domain = process.env.NODE_ENV === 'production' ? 'duck-manga.app' :
 export const baseUrl = `${protocol}://${domain}`;
 export const resizeUrl = process.env.RESIZE_URL;
 
-export const mangaListImageSize = { width: 130, height: 180 };
+export const mangaThumbnailSize = { width: 130, height: 180 };
 
 export const detailUpdateDeadline = 1;
 export const chapterUpdateDeadline = 1;
