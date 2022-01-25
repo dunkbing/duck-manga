@@ -1,5 +1,5 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
-import { FastifyReply } from 'fastify/types/reply';
+import { FastifyReply } from 'fastify';
 import { IncomingMessage } from 'http';
 
 export const getStatusCode = (exception: any): number => {

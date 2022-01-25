@@ -1,5 +1,5 @@
 import { Controller, Get, HttpStatus, Param, Res } from '@nestjs/common';
-import { FastifyReply } from 'fastify/types/reply';
+import { FastifyReply } from 'fastify';
 import { ChapterService } from '../services/chapter.service';
 
 @Controller('chapter')
